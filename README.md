@@ -17,8 +17,18 @@ The idea is to make a light controller with the following specs:
 ## Logical Modules
 
 ### Sawtooth wave generator
+A signal that varies linearly, whose frequency corresponds to the whole day-presepe.
+To produce the ramp, a constant current generator is used which linearly charges a capacitor,
+and a comparator with hysteresis that regulates the maximum charge voltage of the capacitor, and the relative discharge.
+
 ### Daily-phase triggers generator
+Passing the ramp signal through 4 voltage window-comparators, the ramp is divided into 4 periods,
+from which to obtain the 4 trigger signals of the related phases of the day-presepe.
+
 ### LFO square wave generator
+Produce flickering light to simulate stars.
+It is implemented by an astable multivibrator, with buffered output to increase the fan-out.
+
 ### BUS and Backplane
 The BUS has the following lines:
 * Power lines :
@@ -32,11 +42,22 @@ The BUS has the following lines:
 * Wave lines :
 	* S - sawtooth wave
 	* lfo - 15Hz square wave
-	
-### Daily-Phases output lines
-### Stars output lines
-### Fire-lights output lines
-### Nosync output lines
+
+### Daily-Phase light fade in/out effects
+Gradually turns on and off the led strings linked to a phase of the day-presepe.
+A current-source generator is used to charge a capacitor, the charge of which is controlled by a voltage comparator and the phase-trigger.
+When the trigger is deactivated by means of a diodes switch, the capacitor discharges on a current-sink generator.
+Starting from the rectangular trigger signal, a trapezoid-shaped voltage signal is obtained.
+
+### Voltage to current converter
+A current signal is required to drive the LED strings. An emitter-follower and current mirrors serve as a converter and line doubler.
+The trapezoid-shaped voltage signal is transformed into a trapezoid-shaped current signal.
+
+### Stars-light effect
+Mixing toghether the trapezoidal and lfo voltage signals, the result is a serrated signal that emulates the tremolo light of the stars.
+
+### Fire-light effect
+todo
 
 
 ## Physical Boards
