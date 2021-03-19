@@ -1,35 +1,38 @@
 # xpPresepe - Presepe lights-controller eXPerience
-A modular presepe lights controller.
+A modular control unit  for the lighting of the crib (nativity scene).
 
 ![overview](images/presepe-controller.jpg)
 
-The idea is to make a light controller with the following specs:
+The idea was to make a light controller with the following specs:
 - No MCU or digital ICs, only use of analog components
 - Modular approach via BUS
 - Power voltage supply between 12 and 24 VDC, with no effects on timings and thresholds
 - Simulation of the phases of the day: sunrise, day, sunset, night
 - Fade in/out effect on the output lines
-- Tremolo effect for simulate stars
+- Tremolo effect of the stars light
 - Fire-light effect simulation
-- Driving of low-current led strings, synchronized with phases of the day or a combination of them
+- Driving of low-current led strings, synchronized with phases of the day or a mixture of them
 
 
 ## Logical Modules
 
 ### Sawtooth wave generator
-A signal that varies linearly, whose frequency corresponds to the whole day-presepe.
-To produce the ramp, a constant current generator is used which linearly charges a capacitor,
-and a comparator with hysteresis that regulates the maximum charge voltage of the capacitor, and the relative discharge.
+A signal that rises linearly, whose frequency corresponds to the whole day-presepe.
+To produce the ramp a constant current generator is used, which linearly charges a capacitor.
+To stop the ramp rise a comparator with hysteresis regulates the maximum charge voltage of the capacitor, and the relative discharge.
+
+![overview](images/presepe-sawtooth.jpg)
 
 ### Daily-phase triggers generator
-Passing the ramp signal through 4 voltage window-comparators, the ramp is divided into 4 periods,
-from which to obtain the 4 trigger signals of the related phases of the day-presepe.
+Passing the ramp signal through 4 voltage window-comparators, the ramp is divided into 4 sub-periods,
+from which to obtain the 4 trigger hi-lo signals of the related phases of the day-presepe: rise, day, sunset, night.
+
+![overview](images/presepe-trigger.jpg)
 
 ### LFO square wave generator
-Produce flickering light to simulate stars.
-It is implemented by an astable multivibrator, with buffered output to increase the fan-out.
+An astable multivibrator that acts as intermittence, in order to simulate the tremolo of the stars light.
 
-### BUS and Backplane
+### The BUS
 The BUS has the following lines:
 * Power lines :
 	* +Vcc
@@ -43,18 +46,31 @@ The BUS has the following lines:
 	* S - sawtooth wave
 	* lfo - 15Hz square wave
 
+Signals on BUS are buffered to increase the fan-out.
+
 ### Daily-Phase light fade in/out effects
 Gradually turns on and off the led strings linked to a phase of the day-presepe.
-A current-source generator is used to charge a capacitor, the charge of which is controlled by a voltage comparator and the phase-trigger.
-When the trigger is deactivated by means of a diodes switch, the capacitor discharges on a current-sink generator.
-Starting from the rectangular trigger signal, a trapezoid-shaped voltage signal is obtained.
+A current-source generator is used to charge a capacitor, the charge value is controlled by a voltage comparator and the phase-trigger signal.
+When the trigger is deactivated, by means of a switch diode  network, the capacitor discharges on a current-sink generator
+(the trigger signal, when low, must be capable of sink current to GND to activate the diode network).
+Starting from a rectangular trigger signal, a trapezoid-shaped voltage signal is obtained as output.
+
+![overview](images/presepe-trapezoidal.jpg)
+
+### Trigger Mixer
+Mix the trigger signals to obtain compound phases (rise+day, or rise+day+sunset, or rise and sunset, ...).
+A diode or-gate is used to mix the triggers, and a level shifter stage maintains the low-signal near GND.
+
+![overview](images/presepe-tmixer.jpg)
 
 ### Voltage to current converter
-A current signal is required to drive the LED strings. An emitter-follower and current mirrors serve as a converter and line doubler.
+A current signal is required to drive LED strings. An emitter-follower and current mirrors serve as a converter and line doubler.
 The trapezoid-shaped voltage signal is transformed into a trapezoid-shaped current signal.
 
+![overview](images/presepe-mirrors.jpg)
+
 ### Stars-light effect
-Mixing toghether the trapezoidal and lfo voltage signals, the result is a serrated signal that emulates the tremolo light of the stars.
+Mixing toghether the trapezoidal and lfo voltage signals, the result is a serrated signal that emulates the tremolo of the stars light.
 
 ### Fire-light effect
 todo
@@ -63,16 +79,13 @@ todo
 ## Physical Boards
 
 ### Main board
-[main-board](main-board) implements the sawtooth wave generator, the daily-phase triggers generator, the lfo generator and the BUS-backplane.
+[main-board](main-board) implements the sawtooth wave generator, the daily-phase triggers generator, the lfo generator and the BUS backplane.
 
 ### Daily-Phases Lines Board
 [phases-lines-board](phases-lines-board) implements quad current driven output lines, configurable fade in/out effect,
-synchronization with phase-triggers or a combination of them, and flickering effect.
+synchronization with phase-triggers or a mixture of them, and tremolo effect.
 
 ### Fire-lights Lines Board
-todo
-
-### Nosync Lines Board 
 todo
 
 
@@ -81,6 +94,7 @@ Author : Alessandro Fraschetti (mail: [gos95@gommagomma.net](mailto:gos95@gommag
 
 
 ## Credits:
+*w2aew* and his fantastic [tutorials](https://www.youtube.com/channel/UCiqd3GLTluk2s_IBt7p_LjA)
 
 
 ## Licence

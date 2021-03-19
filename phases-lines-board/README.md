@@ -1,8 +1,8 @@
 # *Phases Lines* Board
 Quad current driven output lines, featuring:
 - fade in/out effect, configurable by R5 (fade-in) and R7 (fade-out)
-- synchronization with phase-triggers or a combination of them, by jumpers J1
-- flickering effect, selectable by jumper J2
+- synchronization with phase-triggers or a mixture of them, by jumpers J1
+- tremolo effect, selectable by jumper J2
 
 ![board-built](presepe-phases-lines-board_built.jpg)
 
