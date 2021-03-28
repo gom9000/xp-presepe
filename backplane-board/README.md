@@ -15,4 +15,4 @@ BUS backplane with 7 slots for line boards.
 ## Bill of Materials
 - [x] paperboard 15x9cm cropped to 47x15M (1M=.1inches)
 - [x] 7 x DIL 12-pin female header
-- [x] DIL 12-pin header smd
+- [x] DIL 12-pin female header smd
