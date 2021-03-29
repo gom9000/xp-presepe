@@ -22,9 +22,9 @@ Quad current driven output lines, featuring:
 - [x] led current limiter resistor 4K7ohm
 - [x] DIL 12-pin right-angle header
 - [x] SIL 8-pin right-angle header
-- [x] trigger selector DIL 8-pin header with jumpers
+- [x] 5 x 2-pin header jumper
 - [x] 16 x resistor 1/4 watt (1 x 22Kohm, 6 x 10Kohm, 4 x 1Kohm, 5 x 33ohm)
-- [x] 3 x resistive Trimmer (2 x 10Kohm, 1 x 200ohm)
+- [x] 3 x resistive trimmer (2 x 10Kohm, 1 x 200ohm)
 - [x] 1 x capacitor 470uF 16V
 - [x] 1 x diode bridge for very small voltage and current
 - [x] 9 x diode for small signal
