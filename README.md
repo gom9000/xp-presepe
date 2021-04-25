@@ -78,8 +78,11 @@ todo
 
 ## Physical Boards
 
-### Main board
-[main-board](main-board) implements the sawtooth wave generator, the daily-phase triggers generator and the lfo generator.
+### Waves board
+[waves-board](waves-board) implements the sawtooth wave generator and the lfo generator.
+
+### Triggers board
+[triggers-board](triggers-board) implements the daily-phase triggers generator.
 
 ### Backplane Board
 [backplane-board](backplane-board) the BUS backplane with 7 slots for line boards.
