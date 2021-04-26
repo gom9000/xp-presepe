@@ -17,10 +17,9 @@ Sawtooth wave generator and lfo generator.
 
 
 ## Bill of Materials
-- [x] paperboard 15x9cm cropped to 60x15M (1M=.1inches)
+- [x] paperboard 15x9cm cropped to 58x15M (1M=.1inches)
 - [x] DIL 12-pin header
-- [x] 4 x trigger activity led green 3mm
-- [x] 27 x resistor (2 x 100Kohm, 5 x 10Kohm, 4 x 1Kohm, 1 x 470ohm)
+- [x] 8 x resistor (2 x 100Kohm, 5 x 10Kohm, 1 x 470ohm)
 - [x] potentiometer 1Kohm
 - [x] 18 x capacitor (16 x 1000uF, 2 x 470nF)
 - [x] 9V1 zener diode for small signal
