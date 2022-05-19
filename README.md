@@ -3,7 +3,7 @@ A modular control unit for the lighting of the crib (nativity scene).
 
 ![overview](resources/presepe-controller.jpg)
 
-The idea was to make a light controller with the following specs:
+The idea is to make a light controller with the following specs:
 - No MCU or digital ICs, only use of analog components
 - Modular approach via BUS
 - Power voltage supply between 12 and 24 VDC, with no effects on timings and thresholds
@@ -11,7 +11,7 @@ The idea was to make a light controller with the following specs:
 - Fade in/out effect on the output lines
 - Tremolo effect of the stars light
 - Fire-light effect simulation
-- Driving of low-current led strings, synchronized with phases of the day or a mixture of them
+- Driving of low-current LED strings, synchronized with phases of the day or a mixture of them
 
 
 ## Logical Modules
@@ -20,8 +20,11 @@ The idea was to make a light controller with the following specs:
 A signal that rises linearly, whose frequency corresponds to the whole day-presepe.
 To produce the ramp a constant current generator is used, which linearly charges a capacitor.
 To stop the ramp rise a comparator with hysteresis regulates the maximum charge voltage of the capacitor, and the relative discharge.
+A semplificated idea of a BJT sawtooth wave generator:
 
 ![image](resources/presepe-sawtooth.jpg)
+
+The implementation must adapt the transistors biasing to the corrects voltage levels, without exceeding them. For example Vbe must be less than 4-5 volts (Veb0 value on datasheets).
 
 ### Daily-phase triggers generator
 Passing the ramp signal through 4 voltage window-comparators, the ramp is divided into 4 sub-periods,
@@ -46,7 +49,7 @@ The BUS has the following lines:
 	* S - sawtooth wave
 	* lfo - 15Hz square wave
 
-Signals on BUS are buffered to increase the fan-out.
+Signals on BUS must be buffered to increase the fan-out.
 
 ### Daily-Phase light fade in/out effects
 Gradually turns on and off the led strings linked to a phase of the day-presepe.
