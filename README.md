@@ -1,4 +1,4 @@
-# xpPresepe - Presepe lights-controller eXPerience
+# Presepe Lights XP - Presepe lights-controller eXPerience
 A modular control unit for the lighting of the crib (nativity scene).
 
 ![overview](resources/presepe-controller.jpg)
