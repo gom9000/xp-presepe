@@ -1,4 +1,4 @@
-# Presepe Lights XP - Presepe lights-controller eXPerience
+# Presepe lights-controller eXPerience
 A modular control unit for the lighting of the crib (nativity scene).
 
 ![overview](resources/presepe-controller.jpg)
@@ -40,7 +40,7 @@ The BUS has the following lines:
 * Power lines :
 	* +Vcc
 	* Gnd
-* Phase Triggers lines :
+* Phase Trigger lines :
 	* tA - sunrise-phase trigger
 	* tG - day-phase  trigger
 	* tT - sunset-phase trigger
@@ -51,7 +51,7 @@ The BUS has the following lines:
 
 Signals on BUS must be buffered to increase the fan-out.
 
-### Daily-Phase light fade in/out effects
+### Daily-Phase lights fade in/out effects
 Gradually turns on and off the led strings linked to a phase of the day-presepe.
 A current-source generator is used to charge a capacitor, the charge value is controlled by a voltage comparator and the phase-trigger signal.
 When the trigger is deactivated, by means of a switch diode  network, the capacitor discharges on a current-sink generator
@@ -60,7 +60,7 @@ Starting from a rectangular trigger signal, a trapezoid-shaped voltage signal is
 
 ![image](resources/presepe-trapezoidal.jpg)
 
-### Trigger Mixer
+### Triggers Mixer
 Mix the trigger signals to obtain compound phases (rise+day, or rise+day+sunset, or rise and sunset, ...).
 A diode or-gate is used to mix the triggers, and a level shifter stage maintains the low-signal near GND.
 
@@ -72,7 +72,7 @@ The trapezoid-shaped voltage signal is transformed into a trapezoid-shaped curre
 
 ![image](resources/presepe-mirrors.jpg)
 
-### Stars-light effect
+### Star-light effect
 Mixing toghether the trapezoidal and lfo voltage signals, the result is a serrated signal that emulates the tremolo of the stars light.
 
 ### Fire-light effect
